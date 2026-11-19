@@ -12,10 +12,16 @@ Plan your UCI degree as a map instead of a checklist. Pick a major and catalog y
 -  Save progress in the browser between visits
 -  Support the specialization picker for majors that require one
   
-## 3
-## 4
-## 5
-## 6
-## 7
-## 8
-## 9
+## Architecture
+```text
+Anteater API <-- Ingestion job --> PostgreSQL <-- FastAPI <-- React
+   (fetch)          (upsert)                       (read)      (HTTP/JSON)
+```
+Ingestion (fetch from AnteaterAPI) happens offline, quarterly, to track and update course or other changes. At request time, users never make requests directly to the AnteaterAPI, that data is already stored in Postgres. Prerequisite evaluations happen right on the React frontend, the API sends the full course requirement tree to the frontend and each click computes and changes UI instantly. User course progress only lives in the browser, backend is read-only and stateless. No user accounts in the MVP. 
+
+## 
+## 
+## 
+## 
+## 
+## 
