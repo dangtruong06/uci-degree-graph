@@ -19,7 +19,15 @@ Anteater API <-- Ingestion job --> PostgreSQL <-- FastAPI <-- React
 ```
 Ingestion (fetch from AnteaterAPI) happens offline, quarterly, to track and update course or other changes. At request time, users never make requests directly to the AnteaterAPI, that data is already stored in Postgres. Prerequisite evaluations happen right on the React frontend, the API sends the full course requirement tree to the frontend and each click computes and changes UI instantly. User course progress only lives in the browser, backend is read-only and stateless. No user accounts in the MVP. 
 
-## 
+## Tech Stack
+
+### Backend
+- **FastAPI**: Pydantic models validate and serialize the JSON the API serves, and the auto-generated Swagger UI allows endpoint testing without a frontend
+- **PostgreSQL**: Stores relational tables for courses and requirements, matching what is used in production
+- **SQLAlchemy and Alembic**: SQLAlchemy maps tables to Python classes; Alembic versions every schema change
+- **Docker/Docker compose**: Ensure development and/or production environment are consistent
+- **React/Vite**: Faster frontend development, fast response and UI re-render during changes
+
 ## 
 ## 
 ## 
