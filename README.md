@@ -28,7 +28,20 @@ Ingestion (fetch from AnteaterAPI) happens offline, quarterly, to track and upda
 - **Docker/Docker compose**: Ensure development and/or production environment are consistent
 - **React/Vite**: Faster frontend development, fast response and UI re-render during changes
 
-## 
+## Data Model
+### Scope (v1)
+- **In scope:** undergraduate major and specialization requirements, per catalog year
+- **Deferred:** university-wide GE, UC requirements, school requirements, minors, AP credit
+
+### Tables
+| Table | Purpose |
+|---|---|
+| `program` | One row per major or specialization per catalog year |
+| `requirement` | A program's requirements, stored as a tree (adjacency list) |
+| `requirement_course` | Links each requirement to the courses that can satisfy it |
+| `course` | Course details, including its prerequisite tree |
+| `ingestion_run` | Log of each data load, with timestamps and warnings |
+
 ## 
 ## 
 ## 
